@@ -1,3 +1,17 @@
+.example {
+    display: -ms-grid;
+    display: grid;
+    -webkit-transition: all .5s;
+    -o-transition: all .5s;
+    transition: all .5s;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    background: -webkit-gradient(linear, left top, left bottom, from(white), to(black));
+    background: -o-linear-gradient(top, white, black);
+    background: linear-gradient(to bottom, white, black);
+}
 body {
     margin: 0;
     padding: 0;
@@ -15,7 +29,10 @@ header {
     width: 95vw;
     margin: 2vh auto 0 auto;
     border-radius: 2vmax;
-    box-shadow: inset 2px 2px 20px rgba(0, 0, 0, 0.8);
+    -webkit-box-shadow: inset 2px 2px 20px rgba(0, 0, 0, 0.8);
+            box-shadow: inset 2px 2px 20px rgba(0, 0, 0, 0.8);
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
 }
 
 nav {
@@ -27,9 +44,14 @@ button {
 }
 
 nav > ul {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: space-evenly;
-    align-items: center;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     margin: 0;
     padding: 0;
 }
@@ -38,14 +60,18 @@ nav button {
     display: block;
 }
 
-ul > li > button {
-    color: #fff;
+ nav button {
+    color: navajowhite;
     background-color: transparent;
     border: 1vmin solid rgba(0, 0, 0, 0.2);
     padding: 1vmax;
     border-radius: 1vmax;
-    font-size: 1em;
+    font-size: 2vmax;
     z-index: 10;
+}
+
+nav  button:focus {
+    background-color: rgb(8, 112, 95);
 }
 
 .invisible-menu {
@@ -57,79 +83,48 @@ ul > li > button {
     position: absolute;
     margin-left: 1vw;
     font-size: 1em;
-    transform: translateX(-30%);
+    -webkit-transform: translateX(-30%);
+        -ms-transform: translateX(-30%);
+            transform: translateX(-30%);
     margin-top: 2.5vh;
     border-radius: 1vmax;
-    animation: rotate-border 1s linear;
+    -webkit-animation: rotate-border 1s linear;
+            animation: rotate-border 1s linear;
 }
 
 .visible-menu button {
     width: min(300px, 20vw);
     padding: 2vmax 0;
-    background-color: rgb(16, 223, 223);
+    background-color: grey;
     border: none;
-    color: blue;
+    color: #fff;
     margin-top: 1vh;
-    animation: rotate-btn 1s linear;
+    -webkit-animation: rotate-btn 1s linear;
+            animation: rotate-btn 1s linear;
     font-size: 1.5em;
-    box-shadow: 1px 1px 10px 25px rgba(0, 255, 200, 0.3);
+    -webkit-box-shadow: 1px 1px 10px 25px rgba(0, 255, 200, 0.3);
+            box-shadow: 1px 1px 10px 25px rgba(0, 255, 200, 0.3);
     border-radius: 1vmax;
 }
 
+.visible-menu button + button {
+    margin-top: -0.5vh;
+}
+
 .visible-menu button:hover {
+    -webkit-transition: background-color 0.5s ease-in-out;
+    -o-transition: background-color 0.5s ease-in-out;
     transition: background-color 0.5s ease-in-out;
     background-color: rgba(0, 255, 0, 0.3);
-    color: #fff;
+    color: #000;
+}
+
+@-webkit-keyframes rotate-btn {
+    20% { background-color: rgba(0, 0, 0, 0.3); -webkit-transform: rotateX(180deg); transform: rotateX(180deg); }
+    100% { background-color: snow; -webkit-transform: rotateX(0deg); transform: rotateX(0deg); }
 }
 
 @keyframes rotate-btn {
-    20% { background-color: white; transform: rotateX(180deg); }
-    100% { background-color: green; transform: rotateX(0deg); }
-}
-
-@keyframes rotate-border {
-    0% {
-        box-shadow: 
-        0 0px 0 0 transparent,
-        0 0px 0 0 transparent, 
-        8px 0 0 0 red, 
-        0px 0 0 0 transparent, 
-        0 0 10px rgba(255, 0, 0, 0.3);   
-    }
-
-    25% {
-        box-shadow: 
-        0 -8px 0 0 rgba(0, 255, 0, 0.3),
-        0 0px 0 0 transparent, 
-        0px 0 0 0 transparent, 
-        0px 0 0 0 transparent, 
-        0 0 10px rgba(0, 255, 0, 0.3);
-    }
-
-    50% {
-        box-shadow: 
-        0 0px 0 0 transparent,
-        0 0px 0 0 transparent, 
-        8px 0 0 0 red, 
-        0px 0 0 0 transparent, 
-        0 0 10px rgba(255, 0, 0, 0.3);   
-    }
-
-    75% {
-        box-shadow: 
-        0 0 0 0 transparent,
-        -8px 0 0 0 rgba(0, 0, 255, 0.3), 
-        0 0 0 0 transparent, 
-        0px 0 0 0 transparent, 
-        0 0 10px rgba(0, 0, 255, 0.3);   
-    }
-
-    100% {
-        box-shadow: 
-        0 0 0 0 transparent,
-        0 0 0 0 transparent, 
-        0 0 0 0 transparent, 
-        0px 0 0 0 transparent, 
-        8px 0 20px rgb(255, 174, 0);          
-    }
+    20% { background-color: rgba(0, 0, 0, 0.3); -webkit-transform: rotateX(180deg); transform: rotateX(180deg); }
+    100% { background-color: snow; -webkit-transform: rotateX(0deg); transform: rotateX(0deg); }
 }
